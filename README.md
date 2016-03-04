@@ -1,14 +1,14 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+Functional (but not designed and APIs unimplimented) version of Represent! app, which shows details about House or Representative reps and senators based on Zip Location on both phone and watch, as well as 2012 presidentail election details on watch.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Meiling Zhai ([mmzhai@berkeley.edu](mailto:mmzhai@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See CS160 Programming 2 part B (https://www.youtube.com/watch?v=nPcLRB-mmlk)
 
 ## Screenshots
 
@@ -16,5 +16,6 @@ See [your demo video title here] (https://link_to_your_video)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Any other support
+* CS160 staff for Skeleton Code
+* Android Development API for code snippits and information
+* Google and StackOverflow
