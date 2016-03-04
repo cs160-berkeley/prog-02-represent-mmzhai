@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@color/colorBackgroundDark"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="257dp"
+        android:layout_height="275dp"
+        android:id="@+id/fred_img"
+        android:src="@drawable/home"
+        android:layout_marginTop="50dp" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:weightSum="1">
+
+        <ImageButton
+            android:padding="10dp"
+            android:onClick="selectLocation"
+            android:layout_width="18dp"
+            android:layout_height="28dp"
+            android:background="@drawable/location"
+            android:id="@+id/here_btn"/>
+
+
+        <EditText
+            android:id="@+id/zipcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="    enter zipcode     "
+            android:background="@color/colorBackground"
+            android:textColorHint="@color/colorBackgroundDark"
+            android:textColor="@color/colorBackgroundDark"
+            android:textSize="10pt"/>
+
+        <ImageButton
+            android:padding="10dp"
+            android:onClick="selectLocation"
+            android:layout_width="18dp"
+            android:layout_height="28dp"
+            android:background="@drawable/arrow"
+            android:id="@+id/zip_code_btn"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

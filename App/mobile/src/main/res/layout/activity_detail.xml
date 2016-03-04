@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.cs160.joleary.catnip.RepresentativesActivity">
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="250dp"
+        android:id="@+id/repPhoto"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repParty"
+        android:layout_below="@+id/repPhoto"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repTerm"
+        android:layout_below="@+id/repPhoto"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/committeesTitle"
+        android:text="Committees"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/repTerm"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/committeeScroll"
+        android:layout_below="@+id/committeesTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repCommittees" />
+
+    </ScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/billsTitle"
+        android:text="Recent Bills"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/committeeScroll"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/billsScroll"
+        android:layout_below="@+id/billsTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repBills" />
+
+    </ScrollView>
+</RelativeLayout>
