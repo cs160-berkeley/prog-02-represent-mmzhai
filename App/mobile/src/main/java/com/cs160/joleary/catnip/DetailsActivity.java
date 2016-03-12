@@ -21,13 +21,19 @@ public class DetailsActivity extends Activity {
         Intent intent = getIntent();
         ListItem rep = (ListItem)intent.getSerializableExtra("Representative");
 
+        Intent home=new Intent(this,RepresentativesActivity.class);
+        home.putExtra("Zip", rep.zip);
+        startService(home);
+
         setTitle(rep.repName);
 
         ImageView photo = (ImageView) findViewById(R.id.repPhoto);
-        photo.setImageResource(rep.repPhoto);
-
+        String photoUrl = "https://theunitedstates.io/images/congress/225x275/"+ rep.id +".jpg";
+        new ImageFromUrl(photoUrl, photo).execute();
+        TextView party = (TextView) findViewById(R.id.repParty);
+        party.setText(rep.party + " party");
         TextView term = (TextView) findViewById(R.id.repTerm);
-        term.setText(rep.repTerm);
+        term.setText("Term ends: " + rep.repTerm);
         TextView com = (TextView) findViewById(R.id.repCommittees);
         com.setText(rep.repCommittees);
         TextView bill = (TextView) findViewById(R.id.repBills);

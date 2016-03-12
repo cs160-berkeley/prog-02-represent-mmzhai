@@ -1,5 +1,7 @@
 package com.cs160.joleary.catnip;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +9,6 @@ import java.io.Serializable;
  */
 public class ListItem implements Serializable{
     public String repName;
-    public int repPhoto;
     public String repTerm;
     public String website;
     public String email;
@@ -15,10 +16,11 @@ public class ListItem implements Serializable{
     public String repCommittees;
     public String repBills;
     public String party;
+    public String id;
+    public String zip;
 
-    public ListItem(String repName, int repPhoto, String repTerm, String website, String email, String twitter, String repCommittees, String repBills, String party) {
+    public ListItem(String repName, String repTerm, String website, String email, String twitter, String repCommittees, String repBills, String party, String id, String zip) {
         this.repName = repName;
-        this.repPhoto = repPhoto;
         this.repTerm = repTerm;
         this.website = website;
         this.email = email;
@@ -26,5 +28,7 @@ public class ListItem implements Serializable{
         this.repCommittees = repCommittees;
         this.repBills = repBills;
         this.party = party;
+        this.id = id;
+        this.zip = zip;
     }
 }

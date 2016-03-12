@@ -3,7 +3,10 @@ package com.cs160.joleary.catnip;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,16 +15,35 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.AppSession;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.models.User;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by mmzhai on 3/2/16.
  */
 public class ListAdapter extends ArrayAdapter{
+
     Context context;
     int layoutResourceId;
-    ArrayList<ListItem> reps;
+    public ArrayList<ListItem> reps;
     private Intent info;
+
     public ListAdapter(Context context, int layoutResourceId, ArrayList<ListItem> reps){
         super(context, layoutResourceId, reps);
         this.layoutResourceId = layoutResourceId;
@@ -33,14 +55,15 @@ public class ListAdapter extends ArrayAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         convertView = inflater.inflate(layoutResourceId, parent, false);
+        final int pos = position;
+        final ListItem rep = reps.get(pos);
 
-        final ListItem rep = reps.get(position);
-        ImageView photo = (ImageView) convertView.findViewById(R.id.repImg);
-        photo.setImageResource(rep.repPhoto);
         TextView name = (TextView) convertView.findViewById(R.id.repName);
-        name.setText(rep.repName);
-        TextView twitter = (TextView) convertView.findViewById(R.id.tweet);
-        twitter.setText(rep.twitter);
+        name.setText(rep.repName + " [" + rep.party.charAt(0) + "]");
+
+        ImageView photo = (ImageView) convertView.findViewById(R.id.repImg);
+        String photoUrl = "https://theunitedstates.io/images/congress/225x275/"+ rep.id +".jpg";
+        new ImageFromUrl(photoUrl, photo).execute();
 
         ImageView webButton = (ImageView) convertView.findViewById(R.id.repWeb);
 
@@ -69,7 +92,39 @@ public class ListAdapter extends ArrayAdapter{
         });
 
         ImageView twitterButton = (ImageView) convertView.findViewById(R.id.repTwitter);
+
+        Log.d("T", "BEFORE CALLING TWITTER FOR : " + rep.repName);
+
         final TextView tweet = (TextView) convertView.findViewById(R.id.tweet);
+        //final ImageView photo = (ImageView) convertView.findViewById(R.id.repImg);
+        final View finalConvertView = convertView;
+        TwitterCore.getInstance().logInGuest(new Callback<AppSession>() {
+            @Override
+            public void success(Result<AppSession> appSessionResult) {
+                AppSession session = appSessionResult.data;
+                TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient(session);
+                twitterApiClient.getStatusesService().userTimeline(null, rep.twitter, 1, null, null, false, false, false, true, new Callback<List<Tweet>>() {
+                    @Override
+                    public void success(Result<List<Tweet>> listResult) {
+                        for (Tweet tweet : listResult.data) {
+                            TextView twitter = (TextView) finalConvertView.findViewById(R.id.tweet);
+                            twitter.setText(tweet.text);
+                        }
+                    }
+
+                    @Override
+                    public void failure(TwitterException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            public void failure(TwitterException e) {
+                e.printStackTrace();
+            }
+        });
+
         twitterButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
@@ -96,6 +151,9 @@ public class ListAdapter extends ArrayAdapter{
             }
         });
         return convertView;
+    }
+    public ListItem getRep(int position) {
+        return reps.get(position);
     }
 
 

@@ -25,12 +25,15 @@
 
         <ImageButton
             android:padding="10dp"
-            android:onClick="selectLocation"
+            android:onClick="currentLocation"
             android:layout_width="18dp"
             android:layout_height="28dp"
             android:background="@drawable/location"
             android:id="@+id/here_btn"/>
-
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+        />
 
         <EditText
             android:id="@+id/zipcode"
@@ -43,6 +46,11 @@
             android:textColorHint="@color/colorBackgroundDark"
             android:textColor="@color/colorBackgroundDark"
             android:textSize="10pt"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            />
 
         <ImageButton
             android:padding="10dp"

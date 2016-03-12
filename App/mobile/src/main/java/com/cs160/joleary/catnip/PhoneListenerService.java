@@ -36,7 +36,10 @@ public class PhoneListenerService extends WearableListenerService {
                 Intent sendIntent = new Intent(getBaseContext(), RepresentativesActivity.class);
                 sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 String info = "" + position[1];
+                String zipInfo = position[2];
+                zipInfo = zipInfo.replace("!!", ",");
                 sendIntent.putExtra("Position", info);
+                sendIntent.putExtra("Zip", zipInfo);
                 startActivity(sendIntent);
             }
             // Make a toast with the String

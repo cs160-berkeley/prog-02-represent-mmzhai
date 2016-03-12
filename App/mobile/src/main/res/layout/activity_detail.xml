@@ -7,8 +7,8 @@
     tools:context="com.cs160.joleary.catnip.RepresentativesActivity">
 
     <ImageView
-        android:layout_width="220dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/repPhoto"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/repTerm"
-        android:layout_below="@+id/repPhoto"
+        android:layout_below="@+id/repParty"
         android:layout_centerHorizontal="true" />
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:id="@+id/committeeScroll"
         android:layout_below="@+id/committeesTitle"
         android:layout_centerHorizontal="true"
@@ -60,7 +60,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:id="@+id/billsScroll"
         android:layout_below="@+id/billsTitle"
         android:layout_centerHorizontal="true"

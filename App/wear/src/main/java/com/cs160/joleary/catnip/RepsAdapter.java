@@ -23,7 +23,7 @@ public class RepsAdapter extends FragmentGridPagerAdapter {
         context = c;
         String[] s = info.split(",");
         Log.d("T", "STRING PASSED IN ADAPTER: " + info);
-        numReps = (s.length - 1)/2;
+        numReps = (s.length - 2)/2;
         PAGES = new String[2][numReps][2];
         for (int i = 0; i < numReps; i++) {
             if (i == 0) {
@@ -73,9 +73,15 @@ public class RepsAdapter extends FragmentGridPagerAdapter {
         Log.d("T", "MAKING FRAGMENT: row = " + row + " col = " + col);
         CardFragment fragment;
         if (row == 0) {
-            fragment = CardFragment.create(PAGES[row][col][0], PAGES[row][col][1]);
+            fragment = CardFragment.create(PAGES[row][col][1], PAGES[row][col][0]);
         } else {
-            fragment = CardFragment.create("2012 Elections", "Dem: " + PAGES[1][0][0] + "  Rep: " + (100 - Integer.parseInt(PAGES[1][0][0])));
+            String[] votes = PAGES[1][0][0].split("!!");
+            Log.d("T", "PAGES[1][0][0]: " + PAGES[1][0][0]);
+            float dem = Float.parseFloat(votes[0]);
+            float rep = Float.parseFloat(votes[1]);
+            String county = votes[2];
+            String state = votes[3];
+            fragment = CardFragment.create("2012 Elections", county + ", " + state + "\nObama: " + dem + "%\nRomney: " + rep +"%");
         }
         return fragment;
     }
